@@ -69,6 +69,6 @@ class TypesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def type_params
-      params.fetch(:type, {})
+      params.require(:type).permit(:nome)
     end
 end

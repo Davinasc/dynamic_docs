@@ -2,6 +2,8 @@
 
 one:
   variaveis: MyString
+  type: one
 
 two:
   variaveis: MyString
+  type: two

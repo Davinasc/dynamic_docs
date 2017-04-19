@@ -17,7 +17,7 @@ class TypesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create type" do
     assert_difference('Type.count') do
-      post types_url, params: { type: {  } }
+      post types_url, params: { type: { nome: @type.nome } }
     end
 
     assert_redirected_to type_url(Type.last)
@@ -34,7 +34,7 @@ class TypesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update type" do
-    patch type_url(@type), params: { type: {  } }
+    patch type_url(@type), params: { type: { nome: @type.nome } }
     assert_redirected_to type_url(@type)
   end
 
