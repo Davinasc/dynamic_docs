@@ -1,4 +1,4 @@
 class Template < ApplicationRecord
   belongs_to :type
-  has many :documents
+  has_many :documents
 end
