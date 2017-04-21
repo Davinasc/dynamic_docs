@@ -1,8 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Template:</strong>
-  <%= @document.template %>
+  <strong>Tipo:</strong>
+  <%= link_to @document.template.nome, template_path(@document.template) %>
+</p>
+
+<p>
+  <strong>Tipo:</strong>
+  <%= @document.template.type.nome %>
 </p>
 
 <p>
@@ -10,5 +15,10 @@
   <%= @document.campos %>
 </p>
 
-<%= link_to 'Edit', edit_template_document_path(@template, @document) %> |
-<%= link_to 'Back', template_documents_path(@template) %>
+<p>
+  <strong>Texto:</strong>
+  <%= @document.texto %>
+</p>
+
+<%= link_to 'Edit', edit_template_document_path(@document.template, @document) %> |
+<%= link_to 'Back', documents_path %>

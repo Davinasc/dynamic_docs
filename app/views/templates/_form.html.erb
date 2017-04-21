@@ -11,9 +11,48 @@
     </div>
   <% end %>
 
+  <script>
+    function id( el ){
+      return document.getElementById( el );
+    }
+
+    function addVariavel(variavel) {
+      if(id('variavel').value == '')
+        return
+
+      id('template_variaveis').value += id('variavel').value + ',';
+      this.addTag();
+      variavel.value = '';
+    }
+
+    function addTag() {
+      let valor = id('variavel').value;
+      $('#variaveis').append(
+        `<span class='tag' id='${valor}'>${valor}<i class='fa fa-times' onclick='removerTag(${valor})'></i></span>`
+      );
+    }
+
+    function removerTag(tag) {
+      campo = $(tag).text();
+      valorAntigo = `${campo},`;
+      id('template_variaveis').value = id('template_variaveis').value.replace(valorAntigo, '');
+      $(tag).remove();
+    }
+  </script>
+
+  <input type="text" id="template_variaveis" name="template[variaveis]" value="" hidden>
+
+  <div class="field">
+    <%= f.label :nome, "Nome do Template" %>
+    <%= f.text_field :nome%>
+  </div>
+
+  <div class="" id="variaveis"></div>
+
   <div class="field">
     <%= f.label :variaveis %>
-    <%= f.text_field :variaveis %>
+    <input type="text" name="variavel" id="variavel">
+    <button type="button" class="btn btn-success" onclick="addVariavel(variavel)"><i class="fa fa-plus fa-1"></i></button>
   </div>
 
   <div class="field">

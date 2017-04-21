@@ -14,17 +14,15 @@
   <tbody>
     <% @documents.each do |document| %>
       <tr>
-        <td><%= document.template %></td>
+        <td><%= document.template.type.nome %></td>
         <td><%= document.campos %></td>
         <td><%= document.texto %></td>
-        <td><%= link_to 'Show', url_for([document.template, document]) %></td>
+        <td><%= link_to 'Show', document %></td>
         <td><%= link_to 'Edit', edit_template_document_path(document.template, document) %></td>
-        <td><%= link_to 'Destroy', url_for([document.template, document]), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', document, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Document', new_template_document_path %>

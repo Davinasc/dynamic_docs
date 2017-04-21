@@ -1,17 +1,22 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Template:</strong>
+  <%= @template.nome %>
+</p>
+
+<p>
   <strong>Variaveis:</strong>
   <%= @template.variaveis %>
 </p>
 
 <p>
-  <strong>Type:</strong>
-  <%= @template.type %>
+  <strong>Tipo:</strong>
+  <%= @template.type.nome %>
 </p>
 
 <p>
-  <strong>Testo:</strong>
+  <strong>Texto:</strong>
   <%= @template.texto %>
 </p>
 

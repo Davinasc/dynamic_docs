@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170421174733) do
+ActiveRecord::Schema.define(version: 20170421223648) do
 
   create_table "documents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "template_id"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20170421174733) do
     t.datetime "updated_at", null: false
     t.integer  "type_id"
     t.string   "texto"
+    t.string   "nome"
     t.index ["type_id"], name: "index_templates_on_type_id", using: :btree
   end
 

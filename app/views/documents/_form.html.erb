@@ -42,9 +42,19 @@
   </script>
 
 
-  <% @document.campos.each do |campo| %>
-    <%= f.label campo %>
-    <input id="campo-<%=campo%>" name="<%=campo%>" onchange="ct_campos(this)" onclick="resetar(this)" type="text">
+  <%if @document.campos.is_a? Array %>
+
+    <% @document.campos.each_with_index do |campo, index| %>
+      <%= f.label(campo, "#"+"#{campo}") %>
+      <input type="text" id="campo-<%=campo%>" name="<%=campo%>" onchange="ct_campos(this)" onclick="resetar(this)">
+    <% end %>
+
+  <% else %>
+    <% @document.campos.each {| campo, valor| %>
+      <%= f.label(campo, "#"+"#{campo}") %>
+      <input type="text" id="campo-<%=campo%>" name="<%=campo%>" value="<%=valor%>" onchange="ct_campos(this)" onclick="resetar(this)">
+    <% } %>
+
   <% end %>
 
   <div class="field">

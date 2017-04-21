@@ -1,6 +1,6 @@
 class DocumentsController < ApplicationController
   before_action :set_document, only: [:show, :edit, :update, :destroy]
-  before_action :set_template, only: [:index, :new, :create, :edit, :destroy, :show]
+  before_action :set_template, only: [:new, :create, :edit]
 
   # GET /documents
   # GET /documents.json
@@ -22,6 +22,7 @@ class DocumentsController < ApplicationController
 
   # GET /documents/1/edit
   def edit
+    @document.texto = @template.texto
   end
 
   # POST /documents
@@ -32,7 +33,7 @@ class DocumentsController < ApplicationController
     @document.atualizarTexto(@document)
     respond_to do |format|
       if @document.save
-        format.html { redirect_to template_document_url(@template, @document), notice: 'Document was successfully created.' }
+        format.html { redirect_to @document, notice: 'Document was successfully created.' }
         format.json { render :show, status: :created, location: @document }
       else
         format.html { render :new }
