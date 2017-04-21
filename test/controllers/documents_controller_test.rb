@@ -17,7 +17,7 @@ class DocumentsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create document" do
     assert_difference('Document.count') do
-      post documents_url, params: { document: {  } }
+      post documents_url, params: { document: { campos: @document.campos, template_id: @document.template_id } }
     end
 
     assert_redirected_to document_url(Document.last)
@@ -34,7 +34,7 @@ class DocumentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update document" do
-    patch document_url(@document), params: { document: {  } }
+    patch document_url(@document), params: { document: { campos: @document.campos, template_id: @document.template_id } }
     assert_redirected_to document_url(@document)
   end
 

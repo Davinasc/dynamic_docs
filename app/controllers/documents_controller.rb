@@ -1,5 +1,6 @@
 class DocumentsController < ApplicationController
   before_action :set_document, only: [:show, :edit, :update, :destroy]
+  before_action :set_template, only: [:index, :new, :create, :edit, :destroy, :show]
 
   # GET /documents
   # GET /documents.json
@@ -15,6 +16,8 @@ class DocumentsController < ApplicationController
   # GET /documents/new
   def new
     @document = Document.new
+    @document.getCampos(@template)
+    @document.getTemplate(@template)
   end
 
   # GET /documents/1/edit
@@ -25,10 +28,11 @@ class DocumentsController < ApplicationController
   # POST /documents.json
   def create
     @document = Document.new(document_params)
-
+    @document.format(@template)
+    @document.atualizarTexto(@document)
     respond_to do |format|
       if @document.save
-        format.html { redirect_to @document, notice: 'Document was successfully created.' }
+        format.html { redirect_to template_document_url(@template, @document), notice: 'Document was successfully created.' }
         format.json { render :show, status: :created, location: @document }
       else
         format.html { render :new }
@@ -67,8 +71,12 @@ class DocumentsController < ApplicationController
       @document = Document.find(params[:id])
     end
 
+    def set_template
+      @template = Template.find(params[:template_id])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_params
-      params.fetch(:document, {})
+      params.require(:document).permit(:template_id, :campos, :texto)
     end
 end

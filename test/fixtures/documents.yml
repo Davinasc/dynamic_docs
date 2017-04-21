@@ -2,6 +2,8 @@
 
 one:
   template: one
+  campos: 
 
 two:
   template: two
+  campos: 
