@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
-
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
