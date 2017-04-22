@@ -15,18 +15,18 @@ ActiveRecord::Schema.define(version: 20170421223648) do
   create_table "documents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "template_id"
     t.json     "campos"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "texto"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.text     "texto",       limit: 65535
     t.index ["template_id"], name: "index_documents_on_template_id", using: :btree
   end
 
   create_table "templates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "variaveis"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.integer  "type_id"
-    t.string   "texto"
+    t.text     "texto",      limit: 65535
     t.string   "nome"
     t.index ["type_id"], name: "index_templates_on_type_id", using: :btree
   end

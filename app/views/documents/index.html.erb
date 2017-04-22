@@ -41,7 +41,7 @@
         <h4 class="modal-title" id="modalTitle">Selecione o Template</h4>
       </div>
       <div class="modal-body">
-        <%= select("template", "id" , @templates.collect {|t| [ t.nome, t.id ] }, {include_blank: 'None'}) %>
+        <%= select("template", "id" , @templates.collect {|t| [ t.nome, t.id ] }) %>
         <button type="button" class="btn btn-primary" onclick="selectTemplate()">
           <a href='#' id="templateUrl">Selecionar</a>
         </button>
