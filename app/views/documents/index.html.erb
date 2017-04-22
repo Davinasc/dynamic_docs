@@ -26,3 +26,30 @@
 </table>
 
 <br>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Novo Documento</button>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title" id="modalTitle">Selecione o Template</h4>
+      </div>
+      <div class="modal-body">
+        <%= select("template", "id" , @templates.collect {|t| [ t.nome, t.id ] }, {include_blank: 'None'}) %>
+        <button type="button" class="btn btn-primary" onclick="selectTemplate()">
+          <a href='#' id="templateUrl">Selecionar</a>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function selectTemplate(template) {
+    link = `templates/${template_id.value}/documents/new`;
+    console.log(link);
+    $("#templateUrl").attr("href", link);
+  }
+</script>

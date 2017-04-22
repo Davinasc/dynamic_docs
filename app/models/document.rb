@@ -9,16 +9,16 @@ class Document < ApplicationRecord
     self.texto = template.texto
   end
 
-  def format(template)
+  def format(document, template)
     variaveis = template.variaveis.split(',')
-    valores = self.campos.split(',')
+    valores = document.campos.split(',')
     data = Hash[variaveis.zip valores]
-    self.campos = data
+    document.campos = data
   end
 
   def atualizarTexto(document)
     document.campos.each { |campo, valor|
-      self.texto = document.texto.gsub("#"+"#{campo}", valor)
+      document.texto = document.texto.gsub("#"+"#{campo}", valor)
     }
   end
 

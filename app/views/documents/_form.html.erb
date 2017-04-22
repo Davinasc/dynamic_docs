@@ -11,12 +11,9 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :template_id %>
-    <%= f.text_field :template_id %>
-  </div>
-
-  <input type="text" id="document_campos" name="document[campos]" value="">
+  <strong>Template: </strong><%= @template.nome %>
+  <input value="<%= @template.id %>"  name="document[template_id]" hidden>
+  <br>
 
   <script>
     function id( el ){
@@ -41,15 +38,18 @@
     }
   </script>
 
+  <br>
+
 
   <%if @document.campos.is_a? Array %>
-
+    <input type="text" id="document_campos" name="document[campos]" value="">
     <% @document.campos.each_with_index do |campo, index| %>
       <%= f.label(campo, "#"+"#{campo}") %>
       <input type="text" id="campo-<%=campo%>" name="<%=campo%>" onchange="ct_campos(this)" onclick="resetar(this)">
     <% end %>
 
   <% else %>
+    <input type="text" id="document_campos" name="document[campos]"%>">
     <% @document.campos.each {| campo, valor| %>
       <%= f.label(campo, "#"+"#{campo}") %>
       <input type="text" id="campo-<%=campo%>" name="<%=campo%>" value="<%=valor%>" onchange="ct_campos(this)" onclick="resetar(this)">
