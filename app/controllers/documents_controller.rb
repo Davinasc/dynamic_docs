@@ -2,19 +2,14 @@ class DocumentsController < ApplicationController
   before_action :set_document, only: [:show, :edit, :update, :destroy]
   before_action :set_template, only: [:new, :create, :edit, :update]
 
-  # GET /documents
-  # GET /documents.json
   def index
     @documents = Document.all
     @templates = Template.all
   end
 
-  # GET /documents/1
-  # GET /documents/1.json
   def show
   end
 
-  # GET /documents/new
   def new
     @document = Document.new
     @document.getCampos(@template)
@@ -22,14 +17,11 @@ class DocumentsController < ApplicationController
     @document.template = @template
   end
 
-  # GET /documents/1/edit
   def edit
     @document.texto = @template.texto
     @document.template = @template
   end
 
-  # POST /documents
-  # POST /documents.json
   def create
     @document = Document.new(document_params)
     @document.format(@document, @template)
@@ -45,8 +37,6 @@ class DocumentsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /documents/1
-  # PATCH/PUT /documents/1.json
   def update
     @document.campos = document_params["campos"]
     @document.texto = @template.texto
@@ -57,7 +47,6 @@ class DocumentsController < ApplicationController
       campos: @document.campos,
       texto: @document.texto
     }
-    byebug
     respond_to do |format|
       if @document.update(novoDocumento)
         format.html { redirect_to @document, notice: 'Document was successfully updated.' }
@@ -69,8 +58,6 @@ class DocumentsController < ApplicationController
     end
   end
 
-  # DELETE /documents/1
-  # DELETE /documents/1.json
   def destroy
     @document.destroy
     respond_to do |format|
@@ -80,7 +67,6 @@ class DocumentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_document
       @document = Document.find(params[:id])
     end
@@ -89,7 +75,6 @@ class DocumentsController < ApplicationController
       @template = Template.find(params[:template_id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def document_params
       params.require(:document).permit(:template_id, :campos, :texto)
     end

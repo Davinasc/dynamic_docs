@@ -15,7 +15,11 @@
     <% @documents.each do |document| %>
       <tr>
         <td><%= document.template.type.nome %></td>
-        <td><%= document.campos %></td>
+        <td>
+          <% document.campos.each {|campo, valor| %>
+            <strong><%="##{campo}:"%></strong><%=" #{valor} "%>
+          <% } %>
+        </td>
         <td><%= document.texto %></td>
         <td><%= link_to 'Show', document %></td>
         <td><%= link_to 'Edit', edit_template_document_path(document.template, document) %></td>
