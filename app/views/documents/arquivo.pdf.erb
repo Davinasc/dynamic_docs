@@ -5,6 +5,6 @@
     <title></title>
   </head>
   <body>
-    <h1><%= @document.texto %></h1>
+    <%= @document.texto.html_safe %>
   </body>
 </html>

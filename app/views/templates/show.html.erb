@@ -17,7 +17,7 @@
 
 <p>
   <strong>Texto:</strong>
-  <%= @template.texto %>
+  <%= raw @template.texto %>
 </p>
 
 <%= link_to 'Edit', edit_template_path(@template) %> |

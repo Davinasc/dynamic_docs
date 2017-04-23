@@ -59,7 +59,9 @@
 
   <div class="field">
     <%= f.label :texto %>
-    <%= f.text_field :texto %>
+    <input type="text" id="document_texto" name="document[texto]" value="<%=@document.texto%>"  hidden>
+    <%= raw @document.texto %>
+
   </div>
 
   <div class="actions">

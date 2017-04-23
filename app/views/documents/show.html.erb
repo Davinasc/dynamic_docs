@@ -17,7 +17,7 @@
 
 <p>
   <strong>Texto:</strong>
-  <%= @document.texto %>
+  <%= raw @document.texto %>
 </p>
 
 <%= link_to 'Gerar PDF', documento_path(@document), target: '_blank' %>

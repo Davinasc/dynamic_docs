@@ -20,7 +20,7 @@
             <strong><%="##{campo}:"%></strong><%=" #{valor} "%>
           <% } %>
         </td>
-        <td><%= document.texto %></td>
+        <td><%= raw document.texto %></td>
         <td><%= link_to 'Show', document %></td>
         <td><%= link_to 'Edit', edit_template_document_path(document.template, document) %></td>
         <td><%= link_to 'Destroy', document, method: :delete, data: { confirm: 'Are you sure?' } %></td>

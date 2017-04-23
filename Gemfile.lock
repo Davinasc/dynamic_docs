@@ -8,6 +8,14 @@ GIT
       less-rails (~> 2.8, >= 2.8.0)
       railties (~> 5.0, >= 5.0.1)
 
+GIT
+  remote: https://github.com/galetahub/ckeditor.git
+  revision: 11d3a5b905646c6fd397f7710f95fb9eb29f0865
+  specs:
+    ckeditor (4.2.2)
+      cocaine
+      orm_adapter (~> 0.5.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -51,6 +59,9 @@ GEM
     arel (7.1.4)
     builder (3.2.3)
     byebug (9.0.6)
+    climate_control (0.1.0)
+    cocaine (0.5.8)
+      climate_control (>= 0.0.3, < 1.0)
     coffee-rails (4.2.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.2.x)
@@ -99,6 +110,7 @@ GEM
     nio4r (2.0.0)
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
+    orm_adapter (0.5.0)
     puma (3.8.2)
     rack (2.0.1)
     rack-test (0.6.3)
@@ -175,6 +187,7 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
+  ckeditor!
   coffee-rails (~> 4.2)
   jbuilder (~> 2.5)
   jquery-rails
