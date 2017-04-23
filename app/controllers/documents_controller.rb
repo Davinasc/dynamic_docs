@@ -1,5 +1,5 @@
 class DocumentsController < ApplicationController
-  before_action :set_document, only: [:show, :edit, :update, :destroy]
+  before_action :set_document, only: [:show, :edit, :update, :destroy, :gerar_pdf]
   before_action :set_template, only: [:new, :create, :edit, :update]
 
   def index
@@ -64,6 +64,10 @@ class DocumentsController < ApplicationController
       format.html { redirect_to documents_url, notice: 'Document was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def gerar_pdf
+    render template: 'documents/arquivo.pdf.erb', pdf: 'Arquivo', locals: { :document => @document }
   end
 
   private

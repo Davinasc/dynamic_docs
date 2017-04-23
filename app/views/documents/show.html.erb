@@ -20,5 +20,8 @@
   <%= @document.texto %>
 </p>
 
+<%= link_to 'Gerar PDF', documento_path(@document), target: '_blank' %>
+<br>
+
 <%= link_to 'Edit', edit_template_document_path(@document.template, @document) %> |
 <%= link_to 'Back', documents_path %>
