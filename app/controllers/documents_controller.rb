@@ -43,13 +43,13 @@ class DocumentsController < ApplicationController
     @document.texto = @template.texto
     @document.format(@document, @template)
     @document.atualizarTexto(@document)
-    novoDocumento = {
+    novo_documento = {
       template_id: document_params["template_id"],
       campos: @document.campos,
       texto: @document.texto
     }
     respond_to do |format|
-      if @document.update(novoDocumento)
+      if @document.update(novo_documento)
         format.html { redirect_to @document, notice: 'Document was successfully updated.' }
         format.json { render :show, status: :ok, location: @document }
       else

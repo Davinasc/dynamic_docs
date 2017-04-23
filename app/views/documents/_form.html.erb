@@ -15,29 +15,6 @@
   <input value="<%= @template.id %>"  name="document[template_id]" hidden>
   <br>
 
-  <script>
-    function id( el ){
-    	return document.getElementById( el );
-    }
-    function ct_campos( campo )
-    {
-    	id('document_campos').value += campo.value + ',';
-    }
-    function resetar(campo) {
-      if (campo.value == '') {
-        return
-      } else {
-        remover(campo);
-        campo.value = '';
-      }
-
-    }
-    function remover(campo){
-      valorAntigo = campo.value + ',';
-      id('document_campos').value = id('document_campos').value.replace(valorAntigo, '');
-    }
-  </script>
-
   <br>
 
 

@@ -12,32 +12,7 @@
   <% end %>
 
   <script>
-    function id( el ){
-      return document.getElementById( el );
-    }
-
-    function addVariavel(variavel) {
-      if(id('variavel').value == '')
-        return
-
-      id('template_variaveis').value += id('variavel').value + ',';
-      this.addTag();
-      variavel.value = '';
-    }
-
-    function addTag() {
-      let valor = id('variavel').value;
-      $('#variaveis').append(
-        `<span class='tag' id='${valor}'>${valor}<i class='fa fa-times' onclick='removerTag(${valor})'></i></span>`
-      );
-    }
-
-    function removerTag(tag) {
-      campo = $(tag).text();
-      valorAntigo = `${campo},`;
-      id('template_variaveis').value = id('template_variaveis').value.replace(valorAntigo, '');
-      $(tag).remove();
-    }
+    
   </script>
 
   <input type="text" id="template_variaveis" name="template[variaveis]" value="" hidden>
