@@ -2,7 +2,8 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
   get 'welcome/index'
-  get 'documents/:id/arquivo', to: 'documents#gerar_pdf', as: 'documento'
+  get 'documents/:id/arquivo', to: 'documents#gerar_pdf', as: 'document_pdf'
+  get 'documents/:id/download', to: 'documents#gerar_word', as: 'document_word'
 
   resources :templates do
     resources :documents, only: [:new, :create, :edit, :update]

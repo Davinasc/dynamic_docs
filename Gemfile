@@ -9,6 +9,8 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem 'ckeditor', github: 'galetahub/ckeditor'
+gem 'htmltoword'
+gem 'responders'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'

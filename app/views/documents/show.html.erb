@@ -20,8 +20,9 @@
   <%= raw @document.texto %>
 </p>
 
-<%= link_to 'Gerar PDF', documento_path(@document), target: '_blank' %>
-<br>
+<h3><%= link_to 'Gerar PDF', document_pdf_path(@document), target: '_blank' %></h3>
+
+<h3><%= link_to 'Gerar Documento Word', document_word_path(@document)%></h3>
 
 <%= link_to 'Edit', edit_template_document_path(@document.template, @document) %> |
 <%= link_to 'Back', documents_path %>

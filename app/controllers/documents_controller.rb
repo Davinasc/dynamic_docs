@@ -1,6 +1,7 @@
 class DocumentsController < ApplicationController
-  before_action :set_document, only: [:show, :edit, :update, :destroy, :gerar_pdf]
+  before_action :set_document, only: [:show, :edit, :update, :destroy, :gerar_pdf, :gerar_word]
   before_action :set_template, only: [:new, :create, :edit, :update]
+  respond_to :docx
 
   def index
     @documents = Document.all
@@ -68,6 +69,11 @@ class DocumentsController < ApplicationController
 
   def gerar_pdf
     render template: 'documents/arquivo.pdf.erb', pdf: 'Arquivo', locals: { :document => @document }
+  end
+
+  def gerar_word
+    render template:'documents/download.docx.erb', docx: 'download',
+            locals: { :document => @document }, filename: "#{@document.template.nome}"
   end
 
   private
