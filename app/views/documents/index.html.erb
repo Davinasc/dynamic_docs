@@ -1,38 +1,34 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Documents</h1>
+<h2>
+  Documentos Disponíveis
+  <small>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Novo Documento</button>
+  </small>
+</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>Template</th>
-      <th>Campos</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<hr>
 
-  <tbody>
-    <% @documents.each do |document| %>
-      <tr>
-        <td><%= document.template.type.nome %></td>
-        <td>
-          <% document.campos.each {|campo, valor| %>
-            <strong><%="##{campo}:"%></strong><%=" #{valor} "%>
-          <% } %>
-        </td>
-        <td><%= raw document.texto %></td>
-        <td><%= link_to 'Show', document %></td>
-        <td><%= link_to 'Edit', edit_template_document_path(document.template, document) %></td>
-        <td><%= link_to 'Destroy', document, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="container">
+  <% @documents.each do |document| %>
+  	<div class="well">
+  		<h3 class="doc_nome">
+        <%= document.nome %>
+        <small class="doc_data">
+          <i class="fa fa-calendar-o" aria-hidden="true"></i>
+          <%= document.created_at %>
+        </small>
+      </h3>
+  		<p><i class="fa fa-file-text" aria-hidden="true"></i> <%= document.template.nome %></p>
+  		<p><i class="fa fa-user fa-lg" aria-hidden="true"></i> nome-autor</p>
+      <%= link_to 'Visualizar', document %>
+  	</div>
+  <% end %>
+  <%= paginate @documents %>
+</div>
 
-<br>
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Novo Documento</button>
-
+<!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -41,7 +37,9 @@
         <h4 class="modal-title" id="modalTitle">Selecione o Template</h4>
       </div>
       <div class="modal-body">
-        <%= select("template", "id" , @templates.collect {|t| [ t.nome, t.id ] }) %>
+        <div class="form-group">
+          <%= select("template", "id" , @templates.collect {|t| [ t.nome, t.id ] }, {}, class: "form-control") %>
+        </div>
         <button type="button" class="btn btn-primary" onclick="selectTemplate()">
           <a href='#' id="templateUrl">Selecionar</a>
         </button>
@@ -49,6 +47,9 @@
     </div>
   </div>
 </div>
+<!-- Fim Modal -->
+
+
 
 <script>
   function selectTemplate(template) {

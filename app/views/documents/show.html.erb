@@ -1,28 +1,54 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Tipo:</strong>
-  <%= link_to @document.template.nome, template_path(@document.template) %>
-</p>
+<h1>
+  <%= @document.nome %>
+  <small class="doc_data">
+    <i class="fa fa-calendar-o" aria-hidden="true"></i>
+    <%= @document.created_at %>
+  </small>
+  <button type="button" class="btn btn-info btn-sm">
+    <%= link_to 'Editar', edit_template_document_path(@document.template, @document) %>
+  </button>
+</h1>
 
-<p>
-  <strong>Tipo:</strong>
-  <%= @document.template.type.nome %>
-</p>
+<br>
 
-<p>
-  <strong>Campos:</strong>
-  <%= @document.campos %>
-</p>
+<h4>
+  <strong>Template: </strong>
+  <small>
+    <%= link_to @document.template.nome, template_path(@document.template) %>
+  </small>
+</h4>
 
-<p>
-  <strong>Texto:</strong>
+<br>
+
+<h4>
+  <strong>Tipo: </strong>
+  <small>
+    <%= link_to @document.template.type.nome %>
+  </small>
+</h4>
+
+<br>
+
+<h4><strong>Campos: </strong></h4>
+<% @document.campos.each {|campo, valor| %>
+  <p><%="##{campo}:"%></p><%=" #{valor} "%>
+<% } %>
+
+<br>
+
+<h4 class="text-center"><strong>Texto</strong></h4>
+<div class="text-right">
+  <button type="button" class="btn btn-danger btn-sm">
+    <%= link_to 'PDF', document_pdf_path(@document), target: '_blank'%>
+  </button>
+
+  <button type="button" class="btn btn-primary btn-sm">
+    <%= link_to 'DOC', document_word_path(@document)%>
+  </button>
+</div>
+
+<hr>
   <%= raw @document.texto %>
-</p>
-
-<h3><%= link_to 'Gerar PDF', document_pdf_path(@document), target: '_blank' %></h3>
-
-<h3><%= link_to 'Gerar Documento Word', document_word_path(@document)%></h3>
-
-<%= link_to 'Edit', edit_template_document_path(@document.template, @document) %> |
-<%= link_to 'Back', documents_path %>
+<hr>

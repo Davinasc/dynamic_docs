@@ -1,4 +1,4 @@
-<%= form_for([@template, @document]) do |f| %>
+<%= form_for([@template, @document], html: {class: "form-horizontal"}) do |f| %>
   <% if document.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(document.errors.count, "error") %> prohibited this document from being saved:</h2>
@@ -11,37 +11,58 @@
     </div>
   <% end %>
 
-  <strong>Template: </strong><%= @template.nome %>
-  <input value="<%= @template.id %>"  name="document[template_id]" hidden>
-  <br>
+  <div class="form-group">
+    <%= f.label :template, "Template", class: "col-sm-3 control-label" %>
+    <div class="col-sm-5">
+      <span class="form-control"><%= @template.nome %></span>
+      <input value="<%= @template.id %>"  name="document[template_id]" hidden>
+    </div>
+  </div>
 
-  <br>
-
+  <div class="form-group">
+    <%= f.label :nome, "Nome do Documento", class: "col-sm-3 control-label" %>
+    <div class="col-sm-5">
+      <%= f.text_field :nome, class: "form-control"%>
+    </div>
+  </div>
 
   <%if @document.campos.is_a? Array %>
-    <input type="text" id="document_campos" name="document[campos]" value="">
+
+    <input type="text" id="document_campos" name="document[campos]" value="" hidden>
     <% @document.campos.each_with_index do |campo, index| %>
-      <%= f.label(campo, "#"+"#{campo}") %>
-      <input type="text" id="campo-<%=campo%>" name="<%=campo%>" onchange="ct_campos(this)" onclick="resetar(this)">
+      <div class="form-group">
+        <%= f.label(campo, "#"+"#{campo}", class: "col-sm-3 control-label") %>
+        <div class="col-sm-5">
+          <input type="text" class='form-control' id="campo-<%=campo%>" name="<%=campo%>" onchange="ct_campos(this)" onclick="resetar(this)">
+        </div>
+      </div>
     <% end %>
 
   <% else %>
-    <input type="text" id="document_campos" name="document[campos]"%>">
+    <input type="text" id="document_campos" name="document[campos]" hidden>
     <% @document.campos.each {| campo, valor| %>
-      <%= f.label(campo, "#"+"#{campo}") %>
-      <input type="text" id="campo-<%=campo%>" name="<%=campo%>" value="<%=valor%>" onchange="ct_campos(this)" onclick="resetar(this)">
+      <div class="form-group">
+        <%= f.label(campo, "#"+"#{campo}",class: "col-sm-3 control-label") %>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" id="campo-<%=campo%>" name="<%=campo%>" value="<%=valor%>" onchange="ct_campos(this)" onclick="resetar(this)">
+        </div>
+      </div>
     <% } %>
 
   <% end %>
 
-  <div class="field">
-    <%= f.label :texto %>
-    <input type="text" id="document_texto" name="document[texto]" value="<%=@document.texto%>"  hidden>
-    <%= raw @document.texto %>
-
+  <div class="form-group">
+    <%= f.label :texto, "Texto do Template", class: "col-sm-offset-5" %>
+    <div class="col-sm-offset-2 col-sm-8" id="texto_template">
+      <input type="text" id="document_texto" name="document[texto]" value="<%=@document.texto%>"  hidden>
+      <%= raw @document.texto %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <div class="col-sm-offset-2">
+      <%= f.button "Salvar", class: "btn btn-success form-button", type: "submit" %>
+      <%= link_to 'Cancelar', documents_path, class: 'btn btn-default' %>
+    </div>
   </div>
 <% end %>

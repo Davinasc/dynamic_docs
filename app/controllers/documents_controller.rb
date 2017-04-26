@@ -4,7 +4,7 @@ class DocumentsController < ApplicationController
   respond_to :docx
 
   def index
-    @documents = Document.all
+    @documents = Document.all.page(params[:page]).per(5)
     @templates = Template.all
   end
 
@@ -45,6 +45,7 @@ class DocumentsController < ApplicationController
     @document.atualizarTexto(@document)
     novo_documento = {
       template_id: document_params["template_id"],
+      nome: document_params["nome"],
       campos: @document.campos,
       texto: @document.texto
     }
@@ -86,6 +87,6 @@ class DocumentsController < ApplicationController
     end
 
     def document_params
-      params.require(:document).permit(:template_id, :campos, :texto)
+      params.require(:document).permit(:template_id, :campos, :texto, :nome)
     end
 end
