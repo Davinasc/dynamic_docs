@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     resources :documents, only: [:new, :create, :edit, :update]
   end
   resources :documents, only: [:index, :show, :destroy]
-  resources :types
+  resources :types do
+    get 'templates', to: 'templates#list_by_type', as: 'templates_list'
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

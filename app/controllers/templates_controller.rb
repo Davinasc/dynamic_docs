@@ -1,5 +1,6 @@
 class TemplatesController < ApplicationController
   before_action :set_template, only: [:show, :edit, :update, :destroy]
+  before_action :set_type, only: :list_by_type
 
   def index
     @templates = Template.all.page(params[:page]).per(5)
@@ -49,9 +50,18 @@ class TemplatesController < ApplicationController
     end
   end
 
+  def list_by_type
+    @templates = Template.where(type_id: @type.id).page(params[:page]).per(5)
+    render template: 'templates/index.html.erb'
+  end
+
   private
     def set_template
       @template = Template.find(params[:id])
+    end
+
+    def set_type
+      @type = Type.find(params[:type_id])
     end
 
     def template_params

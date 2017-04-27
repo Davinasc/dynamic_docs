@@ -12,6 +12,10 @@
 <hr>
 
 <div class="container">
+  <% if @templates.empty? %>
+    <p>Não exite nenhum template para esse tipo.</p>
+    <%= link_to 'Criar Agora', new_template_path %>
+  <% end %>
   <% @templates.each do |template| %>
   	<div class="well">
   		<h3 class="doc_nome"> <%= template.nome %> </h3>
