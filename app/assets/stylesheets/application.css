@@ -83,3 +83,7 @@ body {
   color: #fff;
   background: transparent;
 }
+
+#user-info a{
+  color: #000 !important;
+}

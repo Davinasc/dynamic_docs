@@ -2,7 +2,7 @@ class TemplatesController < ApplicationController
   before_action :set_template, only: [:show, :edit, :update, :destroy]
 
   def index
-    @templates = Template.all
+    @templates = Template.all.page(params[:page]).per(5)
   end
 
   def show

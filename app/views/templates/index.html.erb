@@ -1,38 +1,27 @@
 <p id="notice"><%= notice %></p>
 
-<h2>Templates Disponíveis</h2>
+<h2>
+  Templates Disponíveis
+  <small>
+    <button type="button" class="btn btn-primary">
+      <%= link_to 'Novo Template', new_template_path %>
+    </button>
+  </small>
+</h2>
+
 <hr>
 
-<table>
-  <thead>
-    <tr>
-      <th>Template</th>
-      <th>Tipo</th>
-      <th>Variaveis</th>
-      <th>Texto</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @templates.each do |template| %>
-      <tr>
-        <td><%= template.nome %></td>
-        <td><%= template.type.nome %></td>
-        <td><%= template.variaveis %></td>
-        <td><%= template.texto %></td>
-        <td class="text-center">
-          <%= link_to 'Show', template %> |
-          <%= link_to 'Edit', edit_template_path(template) %> |
-          <%= link_to 'Destroy', template, method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'Novo Template', new_template_path %>
-<br>
-<%= link_to 'Novo Tipo', new_template_path %>
+<div class="container">
+  <% @templates.each do |template| %>
+  	<div class="well">
+  		<h3 class="doc_nome"> <%= template.nome %> </h3>
+      <h4>
+        <strong>Tipo:</strong>
+        <small><%= template.type.nome %></small>
+      </h4>
+  		<p><i class="fa fa-user fa-lg" aria-hidden="true"></i> nome-autor</p>
+      <%= link_to 'Visualizar', template %>
+  	</div>
+  <% end %>
+  <%= paginate @templates %>
+</div>

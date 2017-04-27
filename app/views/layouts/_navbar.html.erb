@@ -16,15 +16,30 @@
 				<li><a href="/templates">TEMPLATES</a></li>
 				<li><a href="/documents">DOCUMENTOS</a></li>
 			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">nome_usuario <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="#">Perfil</a></li>
-						<li><a href="#">Sair</a></li>
-					</ul>
-				</li>
-			</ul>
+
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown" id="user-info">
+					<% if user_signed_in? %>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+							<%= current_user.name %>
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<%= link_to 'Perfil', current_user %>
+							</li>
+							<li>
+								<%= link_to 'Sair', destroy_user_session_path, :method => :delete %>
+							</li>
+						</ul>
+					<% else %>
+					  <li>
+					  <%= link_to('Login', new_user_session_path)  %>
+					  </li>
+				<% end %>
+			</li>
+		</ul>
+
 		</div>
 	</div>
 </nav>

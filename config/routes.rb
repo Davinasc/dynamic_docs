@@ -2,6 +2,10 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
   get 'welcome/index'
+
+  devise_for :users
+  resources :users
+
   get 'documents/:id/arquivo', to: 'documents#gerar_pdf', as: 'document_pdf'
   get 'documents/:id/download', to: 'documents#gerar_word', as: 'document_word'
 
